@@ -1,10 +1,24 @@
 # .bashrc
 
+##############################
+## NONINTERACTIVE COMPONENT ##
+##############################
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 
 fi
+
+# check if shell is in noninteractive
+if [ -z "$PS1" ]; then
+    # prompt var is not set, so this is *not* an interactive shell
+    return
+fi
+
+###########################
+## INTERACTIVE COMPONENT ##
+###########################
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -16,7 +30,6 @@ export KRB5_CONFIG=$ATLAS_LOCAL_ROOT_BASE/user/krb5.conf
 
 # Python Configuration
 # scl enable rh-python38 bash --norc
-
 PYTHON_VERSION=$(python -V 2>&1) #Need to redirect, python -V goes to stderr(?)
 
 # basically if there is a two that shows up in the python version
